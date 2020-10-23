@@ -5,7 +5,12 @@
       <input v-model="newTodo" type="text" id="newTodo" />
       <button type="submit">Add Todo</button>
     </form>
-    <h4 v-for="todo in todos" :key="todo"> {{ todo }}</h4>
+    <ul>
+      <li v-for="todo in todos" :key="todo">
+        {{ todo.title }} 
+        <button @click="markDone(todo)">Done</button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -14,15 +19,21 @@ export default {
   name: "App",
   data() {
     return {
-      newTodo: '',
+      newTodo: "",
       todos: [],
     };
   },
   methods: {
     addTodo() {
-      this.todos.push(this.newTodo);
+      this.todos.push({
+        title: this.newTodo,
+        done: false
+      });
       this.newTodo = "";
     },
+    markDone(todo) {
+      todo.done = true;
+    }
   },
 };
 </script>
@@ -35,5 +46,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+ul {
+  list-style-type: none;
 }
 </style>
