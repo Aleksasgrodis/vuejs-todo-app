@@ -12,7 +12,7 @@
           }">
           {{ todo.title }}
         </span>
-        <button @click="markDone(todo)">Done</button>
+        <button @click="markDone(todo)" v-if="!todo.done" >Done</button>
       </li>
     </ul>
   </div>
