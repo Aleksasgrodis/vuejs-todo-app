@@ -7,7 +7,11 @@
     </form>
     <ul>
       <li v-for="todo in todos" :key="todo">
-        {{ todo.title }} 
+        <span :class="{
+            done: todo.done
+          }">
+          {{ todo.title }}
+        </span>
         <button @click="markDone(todo)">Done</button>
       </li>
     </ul>
@@ -27,13 +31,13 @@ export default {
     addTodo() {
       this.todos.push({
         title: this.newTodo,
-        done: false
+        done: false,
       });
       this.newTodo = "";
     },
     markDone(todo) {
       todo.done = true;
-    }
+    },
   },
 };
 </script>
@@ -49,5 +53,8 @@ export default {
 }
 ul {
   list-style-type: none;
+}
+ul li span.done {
+  text-decoration: line-through;
 }
 </style>
