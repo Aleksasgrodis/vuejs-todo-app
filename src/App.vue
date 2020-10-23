@@ -1,19 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <form @submit.prevent="addTodo()">
+      <label for="newTodo">New Todo</label>
+      <input v-model="newTodo" type="text" id="newTodo" />
+      <button type="submit">Add Todo</button>
+    </form>
+    <h4 v-for="todo in todos" :key="todo"> {{ todo }}</h4>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  data() {
+    return {
+      newTodo: '',
+      todos: [],
+    };
+  },
+  methods: {
+    addTodo() {
+      this.todos.push(this.newTodo);
+      this.newTodo = "";
+    },
+  },
+};
 </script>
 
 <style>
